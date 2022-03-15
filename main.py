@@ -13,7 +13,7 @@ def main(w):
     attempts = 0
     letters = []
     while attempts < 6:
-        guess = input(f"\nAttempt: {attempts + 1}\nGuess: ")
+        guess = input(f"\n\nAttempt: {attempts + 1}\nGuess: ").lower()
         if len(guess) != 5:
             print(colored("\nGuess must be a five letter word!", "red"))
             continue
@@ -28,9 +28,9 @@ def main(w):
                 elif guess[x] in w:
                     print(end=colored(guess[x], "yellow"))
                 else:
-                    print(end="_")
+                    print(end=colored(guess[x], "red"))
         print("\nGuessed letters: ", end="")
-        [print(end=colored(f"{l}", "green")) if l in w else print(end=colored(f"{l}", "red")) for l in set(letters)]
+        [print(end=colored(f"{l}", "green")) if l in w else print(end=colored(f"{l}", "red")) for l in sorted(set(letters))]
         attempts += 1
     print(colored(f"\nThe word was: {w}\n\n", "green"))
     
